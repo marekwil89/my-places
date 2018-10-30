@@ -18,8 +18,8 @@ class App extends Component {
         <BrowserRouter>
           <span className="app">
             <Navigation />
-            <Route path="/login" component={pages.LoginPage} />
-            <Route path="/register" component={pages.RegisterPage} />
+            <Route path="/login" component={pages.AuthLoginPage} />
+            <Route path="/register" component={pages.AuthRegisterPage} />
             <Route path="/places" component={pages.PlacesListPage} />
             <Route path="/place/:id/" component={pages.PlacesDetailPage} />
             <Route path="/create" component={pages.PlacesCreatePage} />

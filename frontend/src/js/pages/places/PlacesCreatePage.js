@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import GoogleMap from '../../containers/googleMaps/map';
 import * as placesActions from '../../actions/places';
-import PlacesCreateForm from '../../containers/places/createForm';
+import PlacesCreateForm from '../../containers/places/PlacesCreateForm';
 
 class PlacesCreatePage extends Component {
   componentDidMount() {

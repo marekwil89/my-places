@@ -5,7 +5,7 @@ import * as authActions from '../../actions/auth';
 import renderField from '../../components/renderField';
 import displayServerErrors from '../../helpers/displayServerErrors';
 
-class RegisterForm extends Component {
+class AuthRegisterForm extends Component {
   constructor(props) {
     super(props);
 
@@ -42,4 +42,4 @@ const mapDispatchToProps = dispatch => ({
 
 export default connect(null, mapDispatchToProps)(reduxForm({
   form: 'register',
-})(RegisterForm));
+})(AuthRegisterForm));

@@ -1,4 +1,4 @@
-import { GETconfig, HOSTconfig } from '../config/HTTPmethods';
+import { GETconfig, HOSTconfig } from '../helpers/HTTPmethods';
 import { PLACES } from './types';
 
 export const setPlacesList = payload => ({
@@ -19,5 +19,5 @@ export const getPlaces = (id) => dispatch => {
 };
 
 export const createPlaces = () => dispatch => {
-  
+  console.log('Create place');
 }

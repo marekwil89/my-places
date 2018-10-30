@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import GoogleMapReact from 'google-map-react';
-import googleMapsConfig from '../../config/googleMapsConfig';
-import Marker from './marker';
+import googleMapsConfig from '../config/googleMapsConfig';
+import Marker from '../components/marker';
 
 class GoogleMap extends Component {
   render() {

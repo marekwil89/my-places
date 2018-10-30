@@ -4,6 +4,10 @@ import { connect } from 'react-redux';
 import * as authActions from '../../actions/auth';
 import renderField from '../../components/renderField';
 import displayServerErrors from '../../helpers/displayServerErrors';
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng,
+} from 'react-places-autocomplete';
 
 const categories = ['naprawa', 'sprzedaż']
 
@@ -11,8 +15,21 @@ class PlacesCreateForm extends Component {
   constructor(props) {
     super(props);
 
+    this.state = { address: '' };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  handleChange = address => {
+    this.setState({ address });
+  };
+
+  handleSelect = address => {
+    this.setState({ address });
+    geocodeByAddress(address)
+      .then(results => getLatLng(results[0]))
+      .then(latLng => console.log('Success', latLng))
+      .catch(error => console.error('Error', error));
+  };
 
   handleSubmit(values) {
     console.log(values);
@@ -38,6 +55,26 @@ class PlacesCreateForm extends Component {
             <Field name={`categories[${category}]`} key={index} component="input" type="checkbox" />
           ))}
         </div>
+
+        <PlacesAutocomplete
+          value={this.state.address}
+          onChange={this.handleChange}
+          onSelect={this.handleSelect}
+        >
+          {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+            <>
+              <input {...getInputProps({ placeholder: 'Znajdź miejsce'})}/>
+              <div>
+                {loading && <div>Loading...</div>}
+                {suggestions.map(suggestion => (
+                  <div {...getSuggestionItemProps(suggestion)}>
+                    {suggestion.description}
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+        </PlacesAutocomplete>
 
         <button type="submit">Submit</button>
       </form>

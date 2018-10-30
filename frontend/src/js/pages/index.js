@@ -1,12 +1,12 @@
-import LoginPage from './auth/login';
-import RegisterPage from './auth/register';
-import PlacesListPage from './places/list';
-import PlacesDetailPage from './places/detail';
-import PlacesCreatePage from './places/create';
+import AuthLoginPage from './auth/AuthLoginPage';
+import AuthRegisterPage from './auth/AuthRegisterPage';
+import PlacesListPage from './places/PlacesListPage';
+import PlacesDetailPage from './places/PlacesDetailPage';
+import PlacesCreatePage from './places/PlacesCreatePage';
 
 export default {
-  LoginPage,
-  RegisterPage,
+  AuthLoginPage,
+  AuthRegisterPage,
   PlacesListPage,
   PlacesDetailPage,
   PlacesCreatePage,

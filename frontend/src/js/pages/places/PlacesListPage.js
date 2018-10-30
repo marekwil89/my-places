@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PlacesList from '../../containers/places/list';
-import GoogleMap from '../../containers/googleMaps/map';
+import PlacesList from '../../containers/places/PlacesList';
+import GoogleMap from '../../containers/GoogleMap';
 import * as placesActions from '../../actions/places';
 
 class PlacesListPage extends Component {

@@ -1,5 +1,5 @@
 import { AUTH } from './types';
-import { POSTconfig, GETconfig, HOSTconfig } from '../config/HTTPmethods';
+import { POSTconfig, GETconfig, HOSTconfig } from '../helpers/HTTPmethods';
 
 export const setLogedUser = payload => ({
   type: AUTH.SET_LOGED_USER,
