@@ -1,0 +1,53 @@
+@import './reset.scss';
+@import './fonts.scss';
+@import './components/navigation.scss';
+@import './components/card-box.scss';
+@import './pages/places-detail.scss';
+@import './pages/places-list.scss';
+
+.marker-box {
+  // position: relative;
+  &:hover{
+    figure{
+      animation: 0.3s bounceIn forwards ;
+    }
+  }
+
+  figure {
+    width: 50px;
+    height: 50px;
+    
+    img{
+      border-radius: 50%;
+      width: 100%;
+    }
+  }
+}
+
+
+@keyframes bounceIn {
+  from,
+  20%,
+  40%,
+  60%,
+  80%,
+  to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+
+  30% {
+    transform: scale3d(1.83, 1.83, 1.83);
+  }
+
+  50% {
+    transform: scale3d(2, 2, 2);
+  }
+
+  to {
+    transform: scale3d(1.8, 1.8, 1.8);
+  }
+}
