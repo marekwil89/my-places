@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PlacesList from '../../containers/places/PlacesList';
-import GoogleMap from '../../containers/GoogleMap';
+import GoogleMap from '../../components/GoogleMap';
 import * as placesActions from '../../actions/places';
 
 class PlacesListPage extends Component {
@@ -12,21 +12,29 @@ class PlacesListPage extends Component {
   }
 
   render() {
+    const { places } = this.props;
+
+    console.log(places)
+
     return (
       <section id="places-list-section">
         <article>
           <PlacesList />
         </article>
         <aside>
-          <GoogleMap />
+          <GoogleMap {...places} />
         </aside>
       </section>
     )
   }
 }
 
+const mapStateToProps = ({ places }) => ({
+  places,
+});
+
 const mapDispatchToProps = dispatch => ({
   getPlaces: () => dispatch(placesActions.getPlaces()),
 });
 
-export default connect(null, mapDispatchToProps)(PlacesListPage);
+export default connect(mapStateToProps, mapDispatchToProps)(PlacesListPage);

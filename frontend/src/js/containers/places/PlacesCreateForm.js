@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import * as authActions from '../../actions/auth';
 import renderField from '../../components/renderField';
 import displayServerErrors from '../../helpers/displayServerErrors';
-import PlacesAutocomplete, {
-  geocodeByAddress,
-  getLatLng,
-} from 'react-places-autocomplete';
+import GoogleMap from '../../components/GoogleMap';
+
+import GoogleAutocompleteField from '../../components/GoogleAutocompleteField';
 
 const categories = ['naprawa', 'sprzedaż']
 
@@ -15,21 +14,9 @@ class PlacesCreateForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { address: '' };
+    this.state = { address: null };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
-  handleChange = address => {
-    this.setState({ address });
-  };
-
-  handleSelect = address => {
-    this.setState({ address });
-    geocodeByAddress(address)
-      .then(results => getLatLng(results[0]))
-      .then(latLng => console.log('Success', latLng))
-      .catch(error => console.error('Error', error));
-  };
 
   handleSubmit(values) {
     console.log(values);
@@ -38,11 +25,20 @@ class PlacesCreateForm extends Component {
   }
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, address } = this.props;
+
+    let data = [];
+
+    if(address){
+      data = [address];
+    }
 
     return (
       <form onSubmit={handleSubmit(this.handleSubmit)}>
         <p>Create place</p>
+
+        {JSON.stringify(this.state.address)}
+
         <div>
           <Field name="name" component={renderField} type="text" />
         </div>
@@ -55,26 +51,14 @@ class PlacesCreateForm extends Component {
             <Field name={`categories[${category}]`} key={index} component="input" type="checkbox" />
           ))}
         </div>
+        <div>
+          <Field
+            name="address"
+            component={GoogleAutocompleteField}
+          />
+        </div>
 
-        <PlacesAutocomplete
-          value={this.state.address}
-          onChange={this.handleChange}
-          onSelect={this.handleSelect}
-        >
-          {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-            <>
-              <input {...getInputProps({ placeholder: 'Znajdź miejsce'})}/>
-              <div>
-                {loading && <div>Loading...</div>}
-                {suggestions.map(suggestion => (
-                  <div {...getSuggestionItemProps(suggestion)}>
-                    {suggestion.description}
-                  </div>
-                ))}
-              </div>
-            </>
-          )}
-        </PlacesAutocomplete>
+        <GoogleMap data={data} />
 
         <button type="submit">Submit</button>
       </form>
@@ -82,29 +66,18 @@ class PlacesCreateForm extends Component {
   }
 }
 
-// name: {
-//   type: Sequelize.STRING,
-//   },
-// description: {
-//   type: Sequelize.STRING,
-//   },
-// category: {
-//   type: Sequelize.STRING,
-//   },
-// logo: {
-//   type: Sequelize.STRING,
-//   },
-// address: {
-//   type: Sequelize.STRING,
-//   },
-// coordinates: {
-//   type: Sequelize.STRING,
-//   },
+const mapStateToProps = (state) => {
+  const selector = formValueSelector('placesCreate');
+
+  return {
+    address: selector(state, 'address'),
+  }
+}
 
 const mapDispatchToProps = dispatch => ({
   register: values => dispatch(authActions.register(values)),
 });
 
-export default connect(null, mapDispatchToProps)(reduxForm({
+export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
   form: 'placesCreate',
 })(PlacesCreateForm));

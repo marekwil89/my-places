@@ -8,7 +8,6 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBackIosRounded';
 class PlacesDetail extends Component {
   render() {
     const { place, history } = this.props;
-
     return (
       <>
         <Card className="card-box">
@@ -21,13 +20,13 @@ class PlacesDetail extends Component {
           </CardActions>
           <CardMedia
             className="media-box"
-            image={place.logo}
+            image={place && place.logo}
             title="Contemplative Reptile"
           />
           <hr />
           <CardContent>
             <h4>
-              {place.name}
+              {place && place.name}
             </h4>
             <p>
               This impressive paella is a perfect party dish and a fun meal to cook together with your
@@ -52,9 +51,5 @@ const mapStateToProps = state => {
     place: data,
   }
 };
-
-// const mapDispatchToProps = dispatch => ({
-//   getPlaces: () => dispatch(placesActions.getPlaces()),
-// });
 
 export default withRouter(connect(mapStateToProps, null)(PlacesDetail));
