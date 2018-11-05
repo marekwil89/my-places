@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PlacesList from '../../containers/places/PlacesList';
 import GoogleMap from '../../components/GoogleMap';
 import * as placesActions from '../../actions/places';
+import PlacesList from '../../containers/places/PlacesList';
+import PlacesSearchForm from '../../containers/places/PlacesSearchForm';
 
 class PlacesListPage extends Component {
   componentDidMount() {
@@ -18,6 +19,9 @@ class PlacesListPage extends Component {
 
     return (
       <section id="places-list-section">
+        <header>
+          <PlacesSearchForm />
+        </header>
         <article>
           <PlacesList />
         </article>

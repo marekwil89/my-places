@@ -3,10 +3,10 @@ import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import * as placesActions from '../../actions/places';
 // import displayServerErrors from '../../helpers/displayServerErrors';
-import GoogleMap from '../../components/GoogleMap';
+import GoogleMapCreate from '../../components/GoogleMapCreate';
 
-import renderField from '../../components/renderField';
-import GoogleAutocompleteField from '../../components/GoogleAutocompleteField';
+import renderField from '../../components/fields/renderField';
+import GoogleAutocompleteField from '../../components/fields/GoogleAutocompleteField';
 
 const categories = ['naprawa', 'sprzedaż']
 
@@ -59,7 +59,7 @@ class PlacesCreateForm extends Component {
           />
         </div>
 
-        <GoogleMap data={data} />
+        <GoogleMapCreate data={data} />
 
         <button type="submit">Submit</button>
       </form>

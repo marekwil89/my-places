@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import * as authActions from '../../actions/auth';
-import renderField from '../../components/renderField';
+import renderField from '../../components/fields/renderField';
 import displayServerErrors from '../../helpers/displayServerErrors';
 
 class AuthRegisterForm extends Component {

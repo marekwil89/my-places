@@ -4,5 +4,6 @@ export default {
     lat: 52.000014,
     lng: 20.280431,
   },
+  // bounds: { nw, se, sw, ne },
   zoom: 6
 }
