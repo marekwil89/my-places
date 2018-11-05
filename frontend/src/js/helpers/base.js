@@ -1,0 +1,1 @@
+export const defaultLogo = "http://www.glengarry-callander.com/wp-content/uploads/2017/03/your-logo-here-27-e1489435408249.png";

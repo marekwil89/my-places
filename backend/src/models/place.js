@@ -13,16 +13,13 @@ const Place = connection.define('Place', {
   description: {
     type: Sequelize.STRING,
   },
-  category: {
+  categories: {
     type: Sequelize.STRING,
   },
   logo: {
     type: Sequelize.STRING,
   },
   address: {
-    type: Sequelize.STRING,
-  },
-  coordinates: {
     type: Sequelize.STRING,
   },
 })

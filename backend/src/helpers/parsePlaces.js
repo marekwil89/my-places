@@ -1,7 +1,8 @@
 const parsePlaces = places => places.map(place => {
   return {
     ...place,
-    coordinates: place.coordinates = JSON.parse(place.coordinates)
+    categories: JSON.parse(place.categories),
+    address: JSON.parse(place.address)
   }
 })
 

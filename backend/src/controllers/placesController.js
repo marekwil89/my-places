@@ -13,11 +13,12 @@ const router = express.Router();
 
 router.post('/', async (req, res) => {
   const params = req.body;
+  console.log(params);
 
   const newPlace = await Place.create({
     ...params,
-    category: JSON.stringify(params.category),
-    coordinates: JSON.stringify(params.coordinates),
+    categories: JSON.stringify(params.categories),
+    address: JSON.stringify(params.address),
   });
 
   res.send(newPlace);

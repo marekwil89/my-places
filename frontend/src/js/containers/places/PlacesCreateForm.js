@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
-import * as authActions from '../../actions/auth';
-import renderField from '../../components/renderField';
-import displayServerErrors from '../../helpers/displayServerErrors';
+import * as placesActions from '../../actions/places';
+// import displayServerErrors from '../../helpers/displayServerErrors';
 import GoogleMap from '../../components/GoogleMap';
 
+import renderField from '../../components/renderField';
 import GoogleAutocompleteField from '../../components/GoogleAutocompleteField';
 
 const categories = ['naprawa', 'sprzedaż']
@@ -19,8 +19,9 @@ class PlacesCreateForm extends Component {
   }
 
   handleSubmit(values) {
-    console.log(values);
-    // const { register } = this.props;
+    const { create } = this.props;
+
+    return create(values)
     // return register(values).then(errors => displayServerErrors(errors));
   }
 
@@ -75,7 +76,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  register: values => dispatch(authActions.register(values)),
+  create: values => dispatch(placesActions.createPlaces(values)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({

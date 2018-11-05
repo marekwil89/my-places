@@ -1,43 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Card, CardMedia, CardContent, IconButton, CardActions } from '@material-ui/core';
-import ArrowBackIcon from '@material-ui/icons/ArrowBackIosRounded';
-
+import { isUndefined, isNull, isEmpty } from 'lodash';
+import { defaultLogo } from '../../helpers/base';
 
 class PlacesDetail extends Component {
   render() {
     const { place, history } = this.props;
+
     return (
       <>
-        <Card className="card-box">
-          <CardActions>
-            <IconButton aria-label="Add to favorites">
-              <ArrowBackIcon
-                onClick={() => history.push(`/places`)}
-              />
-            </IconButton>
-          </CardActions>
-          <CardMedia
-            className="media-box"
-            image={place && place.logo}
-            title="Contemplative Reptile"
-          />
+      {place && (
+        <div className="card-box">
+          <button onClick={() => history.push(`/places`)}>back</button> 
+
+          <figure className="logo-box">
+            <img src={place.logo || defaultLogo} />
+          </figure>
           <hr />
-          <CardContent>
-            <h4>
-              {place && place.name}
-            </h4>
-            <p>
-              This impressive paella is a perfect party dish and a fun meal to cook together with your
-              guests. Add 1 cup of frozen peas along with the mussels, if you like.
-            </p>
-            <p>
-              This impressive paella is a perfect party dish and a fun meal to cook together with your
-              guests. Add 1 cup of frozen peas along with the mussels, if you like.
-            </p>
-          </CardContent>
-        </Card>
+          <h4>
+            {place && place.name}
+          </h4>
+          <p>
+            This impressive paella is a perfect party dish and a fun meal to cook together with your
+            guests. Add 1 cup of frozen peas along with the mussels, if you like.
+          </p>
+          <p>
+            This impressive paella is a perfect party dish and a fun meal to cook together with your
+            guests. Add 1 cup of frozen peas along with the mussels, if you like.
+          </p>
+        </div>
+      )}
       </>
     )
   }
