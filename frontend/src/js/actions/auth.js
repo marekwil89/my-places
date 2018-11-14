@@ -25,13 +25,14 @@ export const login = values => dispatch => {
 export const register = values => dispatch => {
   const httpConfig = POSTconfig(values);
 
-  return fetch(`${HOSTconfig}/auth/register`, httpConfig)
+  return fetch(`${HOSTconfig}/user/register`, httpConfig)
     .then(res => res.json())
     .then((response) => {
-      sessionStorage.setItem('jwtToken', response.token);
-      dispatch(setLogedUser(response))
+      console.log(response);
+      // sessionStorage.setItem('jwtToken', response.token);
+      // dispatch(setLogedUser(response))
 
-      return response.errors && response.errors;
+      // return response.errors && response.errors;
     })
     .catch(error => console.log(error));
 };

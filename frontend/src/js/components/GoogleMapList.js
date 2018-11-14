@@ -14,7 +14,7 @@ const mapConfig = {
   zoom: 6
 }
 
-class GoogleMap extends Component {
+class GoogleMapList extends Component {
   render() {
     const { data } = this.props;
 
@@ -22,11 +22,11 @@ class GoogleMap extends Component {
       <div style={{ width: '100%', height: '800px' }}>
         {data && (
           <GoogleMapReact onChange={(data) => console.log(data)} {...mapConfig}>
-            {/* {data.map((place, index) => {
-              const address = !place.coordinates ? JSON.parse(place.address).coordinates : place.coordinates;
+            {data.map((place, index) => {
+              const coordinates = JSON.parse(place.coordinates);
 
-              return (<Marker key={place.id || index} id={place.id} logo={place.logo || defaultLogo} {...address} text="AAAA" />)})
-            } */}
+              return (<Marker key={place.id || index} id={place.id} logo={place.logo || defaultLogo} {...coordinates} text="AAAA" />)})
+            }
           </GoogleMapReact>
         )}
       </div>
@@ -34,4 +34,4 @@ class GoogleMap extends Component {
   }
 }
 
-export default GoogleMap;
+export default GoogleMapList;

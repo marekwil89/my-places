@@ -14,7 +14,8 @@ class AuthRegisterForm extends Component {
 
   handleSubmit(values) {
     const { register } = this.props;
-    return register(values).then(errors => displayServerErrors(errors));
+    return register(values)
+    // .then(errors => displayServerErrors(errors));
   }
 
   render() {
@@ -22,13 +23,41 @@ class AuthRegisterForm extends Component {
 
     return (
       <form onSubmit={handleSubmit(this.handleSubmit)}>
-        <p>Register</p>
         <div>
-          <Field name="login" component={renderField} type="text" />
+          <Field
+            name="email"
+            component={renderField}
+            placeholder="email"
+            type="text" 
+            required
+          />
         </div>
-        <hr/>
         <div>
-          <Field name="password" component={renderField} type="password" />
+          <Field
+            name="password"
+            component={renderField}
+            placeholder="password"
+            type="text"
+            required
+          />
+        </div>
+        <div>
+          <Field
+            name="first_name"
+            component={renderField}
+            placeholder="first_name"
+            type="text"
+            required
+          />
+        </div>
+        <div>
+          <Field
+            name="last_name"
+            component={renderField}
+            placeholder="last_name"
+            type="text"
+            required
+          />
         </div>
         <button type="submit">Submit</button>
       </form>

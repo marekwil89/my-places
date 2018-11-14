@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PlacesDetail from '../../containers/places/PlacesDetail';
-import GoogleMap from '../../components/GoogleMap';
+import GoogleMapList from '../../components/GoogleMapList';
 import * as placesActions from '../../actions/places';
 
 class PlacesDetailPage extends Component {
@@ -20,7 +20,7 @@ class PlacesDetailPage extends Component {
           <PlacesDetail />
         </article>
         <aside>
-          <GoogleMap {...places} />
+          <GoogleMapList {...places} />
         </aside>
       </section>
     )

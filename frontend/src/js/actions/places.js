@@ -6,7 +6,7 @@ export const setPlacesList = payload => ({
   payload,
 })
 
-export const getPlaces = (id) => dispatch => {
+export const getPlaces = id => dispatch => {
   console.log('zapytanie !')
   const httpConfig = GETconfig();
 
@@ -29,3 +29,8 @@ export const createPlaces = values => dispatch => {
   // .then((response) => console.log(response))
   // .catch(error => console.log(error));
 }
+
+export const setSearchPlace = payload => ({
+  type: PLACES.SET_SEARCH_PLACE,
+  payload,
+})

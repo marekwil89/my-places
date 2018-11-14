@@ -22,6 +22,9 @@ const Place = connection.define('Place', {
   address: {
     type: Sequelize.STRING,
   },
+  coordinates: {
+    type: Sequelize.STRING,
+  }
 })
 
 export default Place;

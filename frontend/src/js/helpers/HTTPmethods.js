@@ -19,4 +19,4 @@ export const GETconfig = (token) => {
   }
 }
 
-export const HOSTconfig = 'http://localhost:5000';
+export const HOSTconfig = 'http://35.198.93.59';

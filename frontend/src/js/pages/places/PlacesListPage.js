@@ -1,33 +1,66 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import GoogleMap from '../../components/GoogleMap';
+import GoogleMapList from '../../components/GoogleMapList';
 import * as placesActions from '../../actions/places';
 import PlacesList from '../../containers/places/PlacesList';
 import PlacesSearchForm from '../../containers/places/PlacesSearchForm';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 class PlacesListPage extends Component {
-  componentDidMount() {
-    const { getPlaces } = this.props;
+  constructor(props) {
+    super(props);
 
-    getPlaces();
+    this.state = { isLoading: false };
+  }
+
+  componentDidMount() {
+    // const { getPlaces } = this.props;
+
+    // // getPlaces();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { places, getPlaces } = this.props;
+
+    if (prevProps.places && places ? prevProps.places.searchPlace !== places.searchPlace : false) {
+
+      this.setState({
+        isLoading: true,
+      })
+
+      getPlaces().then(response => {
+        if(response) {
+          setTimeout(() => {
+            this.setState({
+              isLoading: false,
+            })
+          }, 500)
+        }
+      });
+    }
   }
 
   render() {
     const { places } = this.props;
-
-    console.log(places)
+    const { isLoading } = this.state;
 
     return (
       <section id="places-list-section">
         <header>
           <PlacesSearchForm />
         </header>
-        <article>
-          <PlacesList />
-        </article>
-        <aside>
-          <GoogleMap {...places} />
-        </aside>
+        <div className="places-wrapper">
+          {!isLoading ? (
+            <>
+              <article>
+                <PlacesList />
+              </article>
+              <aside>
+                <GoogleMapList {...places} />
+              </aside>
+            </>
+          ) : <CircularProgress />}
+        </div>
       </section>
     )
   }

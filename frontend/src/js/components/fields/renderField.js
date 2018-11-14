@@ -1,13 +1,17 @@
 import React from 'react';
+import TextField from '@material-ui/core/TextField';
 
-const renderField = ({ input, label, type, meta: { touched, error } }) => (
-  <div>
-    <label>{label}</label>
-    <div>
-      <input {...input} placeholder={label} type={type} />
-      {touched && error && <span>{error}</span>}
-    </div>
-  </div>
+const renderField = ({ input, placeholder, type, required, meta: { touched, error } }) => (
+  <>
+    <TextField
+      required={required}
+      label={placeholder}
+      fullWidth
+      type={type}
+      {...input}
+    />
+    {touched && error && <span>{error}</span>}
+  </>
 )
 
 export default renderField;

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { isUndefined, isNull, isEmpty } from 'lodash';
 import { defaultLogo } from '../../helpers/base';
 
 class PlacesDetail extends Component {

@@ -13,15 +13,17 @@ const router = express.Router();
 
 router.post('/', async (req, res) => {
   const params = req.body;
-  console.log(params);
+
+  const { place, coordinates } = params.address
 
   const newPlace = await Place.create({
     ...params,
     categories: JSON.stringify(params.categories),
-    address: JSON.stringify(params.address),
+    coordinates: JSON.stringify(coordinates),
+    address: place,
   });
 
-  res.send(newPlace);
+  // res.send(newPlace);
 });
 
 router.get('/', async (req, res) => {
@@ -34,8 +36,6 @@ router.get('/', async (req, res) => {
   const places = await Place.findAll({
     where: query,
   });
-
-  parsePlaces(places);
 
   res.send(places);
 });

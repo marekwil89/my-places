@@ -5,13 +5,21 @@
     width: 100%;
   }
 
-  article {
-    padding: 0 10px 0 20px;
-    width: 40%;
+  .places-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 600px;
+
+    article {
+      padding: 0 10px 0 20px;
+      width: 40%;
+    }
+  
+    aside{
+      padding: 0 20px 0 10px;
+      width: 60%;
+    }
   }
 
-  aside{
-    padding: 0 20px 0 10px;
-    width: 60%;
-  }
 }

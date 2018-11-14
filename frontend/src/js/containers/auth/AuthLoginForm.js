@@ -23,10 +23,22 @@ class AuthLoginForm extends Component {
       <form onSubmit={handleSubmit(this.handleSubmit)}>
         <p>Login</p>
         <div>
-          <Field name="login" component={renderField} type="text" />
+          <Field
+            name="email"
+            component={renderField}
+            placeholder="email"
+            type="text"
+            required
+          />
         </div>
         <div>
-          <Field name="password" component={renderField} type="password" />
+          <Field
+            name="password"
+            component={renderField}
+            placeholder="password"
+            type="text"
+            required
+          />
         </div>
         <button type="submit">Submit</button>
       </form>

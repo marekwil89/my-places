@@ -3,6 +3,11 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from 'react-places-autocomplete';
+import TextField from '@material-ui/core/TextField';
+
+import MenuItem from '@material-ui/core/MenuItem';
+
+
 
 class GoogleAutocompleteField extends React.Component {
   constructor(props) {
@@ -30,28 +35,35 @@ class GoogleAutocompleteField extends React.Component {
   }
 
   render() {
+    const { placeholder, type } = this.props;
+
     return (
-      <span>
-        <PlacesAutocomplete
-          value={this.state.place}
-          onChange={this.handleChange}
-          onSelect={this.handleSelect}
-        >
-          {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-            <>
-              <input {...getInputProps({ placeholder: 'find a place' })} />
-              <div>
-                {loading && <div>Loading...</div>}
-                {suggestions.map(suggestion => (
-                  <div {...getSuggestionItemProps(suggestion)}>
-                    {suggestion.description}
-                  </div>
-                ))}
-              </div>
-            </>
-          )}
-        </PlacesAutocomplete>
-      </span>
+      <PlacesAutocomplete
+        value={this.state.place}
+        onChange={this.handleChange}
+        onSelect={this.handleSelect}
+      >
+        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+          <>
+            <TextField
+              label={placeholder}
+              fullWidth
+              type={type}
+              {...getInputProps()}
+            />
+            <div>
+              {loading && <div>Loading...</div>}
+              {suggestions.map(suggestion => (
+                <MenuItem
+                  {...getSuggestionItemProps(suggestion)}
+                >
+                  {suggestion.description}
+                </MenuItem>
+              ))}
+            </div>
+          </>
+        )}
+      </PlacesAutocomplete>
     );
   }
 }

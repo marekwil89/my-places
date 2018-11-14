@@ -33,6 +33,8 @@ class GoogleMapCreate extends Component {
     const { data } = this.props;
     const { mapConfig } = this.state;
 
+    console.log(data);
+
     return (
       <div style={{ width: '100%', height: '800px' }}>
         {data && (

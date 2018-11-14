@@ -1,57 +1,46 @@
 import React, { Component } from 'react';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
-// import * as placesActions from '../../actions/places';
-// import GoogleMapCreate from '../../components/GoogleMapCreate';
-
-import PlacesAutocompleteField from '../../components/fields/PlacesAutocompleteField';
-
-const suggestions = [
-  { label: 'Apple', value: 1 },
-  { label: 'Aqua', value: 2 },
-  { label: 'Banana', value: 3 },
-  { label: 'Bean', value: 4 },
-  { label: 'Date', value: 5 },
-];
+import * as placesActions from '../../actions/places';
+import Button from '@material-ui/core/Button';
+import GoogleAutocompleteField from '../../components/fields/GoogleAutocompleteField';
 
 class PlacesSearchForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { address: null, suggestions: [] };
+    // this.state = { address: null };
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
   }
 
   handleSubmit(values) {
-    const { search } = this.props;
+    const { setSearchPlace } = this.props;
 
-    return search(values)
+    const { place } = values;
+
+    return setSearchPlace(place)
     // return register(values).then(errors => displayServerErrors(errors));
-  }
-
-  handleChange(value) {
-    const { getSuggestions } = this.props;
-    getSuggestions(value);
   }
 
   render() {
     const { handleSubmit } = this.props;
 
+
     return (
       <form onSubmit={handleSubmit(this.handleSubmit)}>
-        <p>Search form places</p>
 
         <div>
           <Field
-            onChange={(event) => this.handleChange(event.target.value)}
             name="place"
-            component={PlacesAutocompleteField}
-            suggestions={suggestions}
+            component={GoogleAutocompleteField}
+            placeholder="search"
+            type="text"
           />
         </div>
-
-        <button type="submit">Submit</button>
+        <Button type="submit" variant="contained" color="primary">
+          Primary
+        </Button>
+        {/* <button >Submit</button> */}
       </form>
     )
   }
@@ -66,8 +55,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  search: values => console.log(values),
-  getSuggestions: value => console.log(value),
+  setSearchPlace: place => dispatch(placesActions.setSearchPlace(place)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({

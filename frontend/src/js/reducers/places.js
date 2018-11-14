@@ -1,6 +1,7 @@
 import { PLACES } from '../actions/types';
 
 const initialState = {
+  searchPlace: null,
   data: null,
 };
 
@@ -11,6 +12,11 @@ export default (state = initialState, action) => {
         ...state,
         data: action.payload,
       };
+    case PLACES.SET_SEARCH_PLACE:
+      return {
+        ...state,
+        searchPlace: action.payload,
+      }
     default:
       return state;
   }

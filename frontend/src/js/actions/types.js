@@ -4,4 +4,5 @@ export const AUTH = {
 
 export const PLACES = {
   SET_PLACES_LIST: 'SET_PLACES_LIST',
+  SET_SEARCH_PLACE: 'SET_SEARCH_PLACE',
 }

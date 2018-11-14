@@ -22,7 +22,6 @@ class PlacesCreateForm extends Component {
     const { create } = this.props;
 
     return create(values)
-    // return register(values).then(errors => displayServerErrors(errors));
   }
 
   render() {
@@ -56,6 +55,8 @@ class PlacesCreateForm extends Component {
           <Field
             name="address"
             component={GoogleAutocompleteField}
+            placeholder="search"
+            type="text"
           />
         </div>
 
